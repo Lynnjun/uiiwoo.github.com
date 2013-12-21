@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>MAC OSX 10.9.1 下安装 Rails | 友我 / uiiwoo</title>
+  <meta name="author" content="布雷奥斯">
+  
+  <meta name="description" content="blog | c | .net | java | bi | coder | sina | apple | ipad | iphone | android | mac | ps4 | psv | 3ds | gtd | 敏捷 | 管理 | kindle | 亚马逊 | nas | 小米">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:title" content="MAC OSX 10.9.1 下安装 Rails"/>
+  <meta property="og:site_name" content="友我 / uiiwoo"/>
+
+  <link rel="alternate" href="/atom.xml" title="友我 / uiiwoo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+  <div class="wrapper">
+    <header id="header"><div class="title">
+  <h1><a href="/">友我 / uiiwoo</a></h1>
+  <p><a href="/">时光不语，静待花开。友我，一抹馨香，浅抒流年。一切若安好，便是晴天。</a></p>
+</div>
+<nav class="nav">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/reading">读书</a></li>
+    
+      <li><a href="/archives">列表</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <time datetime="2013-12-21T09:47:56.000Z"><a href="/2013/12/21/install-rails/">12月 21 2013</a></time>
+    
+    
+  
+    <h1 class="title">MAC OSX 10.9.1 下安装 Rails</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <h2>安装 RVM</h2>
+<h3>RVM 是 RUBY 的管理工具，我们执行如下命令安装：</h3>
+<pre><code>bash -s stable &lt;&lt; (curl -s <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/wayneeseguin</span><span class="regexp">/rvm/master</span><span class="regexp">/binscripts/rvm</span>-installer)</code></pre>
+<p><strong>⚉ 安装完成后需要在 ~/.bash_profile 中加入下面信息：</strong></p>
+<pre><code><span class="string">[[ -s "/Users/bjsky/.rvm/scripts/rvm" ]]</span> &amp;&amp; source <span class="string">"/Users/bjsky/.rvm/scripts/rvm"</span></code></pre>
+<p><em>很简单，到此就算完成了 RVM 的安装。</em></p>
+<h2><a id="more"></a></h2>
+<h2>解决问题</h2>
+<blockquote>
+<p>遇到的麻烦多的差点让我想放弃，这里仅仅记录了我遇到的比较重点的几个问题和我的解决办法，开篇之前重点说明下，血泪教训：</p>
+<blockquote>
+<p>其实我所遇到的最大的问题是我在装载的第二个磁盘宗卷上用的 extFat 文件格式，之后将个人路径默认设置给了该宗卷，结果导致了一大堆各种各样的权限问题和莫名其妙的错误，如果看家也有这样的问题，建议不用急着排插当前的错误了，先将宗卷文件格式改回去在说吧，Linux 下同理。</p>
+</blockquote>
+</blockquote>
+<h3>GCC 无法安装的问题</h3>
+<p><strong>⚉ 需要 CLT：</strong></p>
+<pre><code><span class="title">xCode</span> <span class="number">5</span>.<span class="number">0</span> 后 command line tools 是使用命令安装的，也可以直接到苹果开发者网站下载安装包安装。
+
+安装包下载地址：<span class="url">https://developer.apple.com/downloads/index.action</span>
+安装命令：xcode-<span class="built_in">select</span> --install</code></pre>
+<p><strong>⚉ 需要需要 GCC：</strong></p>
+<pre><code>直接用 brew 安装 apple-gcc42 ，如果想要安装 gcc49 或更新，直接去下载安装吧，brew 现在装不了了。</code></pre>
+<p><strong>⚉ 需要解决 Homebrew 搜索软件的警告问题：</strong></p>
+<pre><code>警告提示，需要 Git 的 SSH KEY ，所以用 ssh 命令生成 key ，并添加到自己的 Github 账户设置里面。
+
+首先在本地创建ssh key：
+      ssh-keygen -t rsa -C <span class="string">"your_email@youremail.com"</span>
+  后面的 your_email@youremail<span class="variable">.com</span> 改为你的邮箱，之后会要求确认路径和输入密码，可用使用默认的一路回车就行。
+
+成功的话会在 ~/ 下生成<span class="variable">.ssh</span>文件夹，进去，打开id_rsa<span class="variable">.pub</span>，复制里面的key。提示，可用 cat 命令，也可用 vim 打开。
+
+回到github，进入 Account Settings，左边选择 SSH Keys -&gt; Add SSH Keyz。title 随便填，粘贴 key。
+
+验证是否成功，可用在 git bash 下输入：
+      ssh -T git@github<span class="variable">.com</span>
+
+如果是第一次连接，会提示是否 <span class="keyword">continue</span>，输入 yes 就会看到：You’ve successfully authenticated, but GitHub does not provide shell access。这就表示已成功连上github。</code></pre>
+<p><strong>⚉ 需要解决与 github 连接不成功，提示权限出错的问题在在：</strong></p>
+<pre><code>警告信息：UNPROTECTED PRIVATE KEY FILE!
+解决办法，修改权限：
+      chmod <span class="number">755</span> ~/<span class="variable">.ssh</span>/
+      chmod <span class="number">600</span> ~/<span class="variable">.ssh</span>/id_rsa ~/<span class="variable">.ssh</span>/id_rsa<span class="variable">.pub</span> 
+      chmod <span class="number">644</span> ~/<span class="variable">.ssh</span>/known_hosts
+
+题外：我在这里遇到了权限无法修改的问题，因为我 MAC 下的默认路径是在挂载的硬盘分区上的，该分区是 extFat 格式，不能被修改权限。。。我嘞个去啊，我的个人默认配置路径和众多数据都在这盘上面了，由于一年多以前第一次玩 MAC 系统，挂载的硬盘设置成 extFat 方便我直接到 win下考数据的，一直也没觉得有什么太严重的问题，无非就是开关机慢点、索引文件慢点、Aperture 的图库不能放上面等问题，由于数据多，个人资料路径都设定了，就不想改了，结果在这儿等着我还债。。。</code></pre>
+<p><strong>⚉ 需要解决执行 rvm requirements 的各种报错：</strong></p>
+<pre><code>我安装了 apple-gcc42 后还提示错误，查看发现是 Homebrew 我设置的路径下面有中文，rvm 识别乱码。将 Homebrew 修改为默认推荐的 usr/<span class="keyword">local</span> 后解决问题。</code></pre>
+<hr>
+<h3>安装 Ruby</h3>
+<p><strong>⚉ 需要查看已知的 Ruby 版本列表：</strong></p>
+<pre><code>命令：rvm <span class="keyword">list</span> known </code></pre>
+<p><strong>⚉ 需要安装最新的 Ruby 版本：</strong></p>
+<pre><code><span class="comment">命令：rvm</span>  <span class="comment">install</span>  <span class="comment">ruby</span>  <span class="literal">-</span><span class="literal">-</span><span class="comment">head</code></pre>
+<p><strong>⚉ 需要安装指定版本：</strong></p>
+<pre><code>命令：rvm  <span class="keyword">install</span>  <span class="number">2.0</span>.<span class="number">0</span></code></pre>
+<p><strong>⚉ 需要指定当前使用的 Ruby 版本：</strong></p>
+<pre><code><span class="comment">命令：rvm</span>  <span class="comment">use</span>  <span class="comment">2</span>.<span class="comment">0</span>.<span class="comment">0</span>  <span class="literal">-</span><span class="literal">-</span><span class="comment">default</code></pre>
+<hr>
+<h3>安装 Rails</h3>
+<p><strong>⚉ 需要使用 gem 安装 Rails：</strong></p>
+<pre><code><span class="comment">命令：gem</span> <span class="comment">install</span> <span class="comment">rails</span> <span class="literal">-</span><span class="comment">V</code></pre>
+<blockquote>
+<p><strong>End</strong></p>
+</blockquote>
+
+    
+  </div>
+  <footer>
+    
+      
+  
+  <div class="categories">
+    <a href="/categories/Mac 使用技巧/">Mac 使用技巧</a>
+  </div>
+
+      
+  
+  <div class="tags">
+    <a href="/tags/Rails/">Rails</a>, <a href="/tags/Ruby/">Ruby</a>, <a href="/tags/Mac/">Mac</a>, <a href="/tags/github/">github</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div class="ds-thread" data-title="MAC OSX 10.9.1 下安装 Rails">
+  </div>
+</section>
+</div>
+  </div>
+  <div class="widget-wrapper">
+    <aside id="sidebar">
+  
+  
+    
+      
+      
+
+<div class="widget tag first">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Mac 使用技巧/">Mac 使用技巧</a><small>2</small></li>
+  
+    <li><a href="/categories/本站建设/">本站建设</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+    
+      
+      
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Homebrew/" style="font-size: 10.00px;">Homebrew</a><a href="/tags/Mac/" style="font-size: 20.00px;">Mac</a><a href="/tags/Rails/" style="font-size: 10.00px;">Rails</a><a href="/tags/Ruby/" style="font-size: 10.00px;">Ruby</a><a href="/tags/github/" style="font-size: 20.00px;">github</a><a href="/tags/icon/" style="font-size: 10.00px;">icon</a><a href="/tags/jpeg/" style="font-size: 10.00px;">jpeg</a><a href="/tags/uiiwoo/" style="font-size: 20.00px;">uiiwoo</a><a href="/tags/一抹馨香/" style="font-size: 10.00px;">一抹馨香</a><a href="/tags/友我/" style="font-size: 10.00px;">友我</a><a href="/tags/散文/" style="font-size: 10.00px;">散文</a>
+  </div>
+</div>
+
+    
+      
+      
+
+<div class="widget recent-posts">
+  <h3 class="title">最近的文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/12/21/install-rails/">MAC OSX 10.9.1 下安装 Rails</a>
+      </li>
+    
+      <li>
+        <a href="/2013/12/20/homebrew/">利用 Homebrew 管理 Mac 平台下的软件包</a>
+      </li>
+    
+      <li>
+        <a href="/2013/12/19/uiiwoo-icon/">友我 的临时图标</a>
+      </li>
+    
+      <li>
+        <a href="/2013/12/19/hello-world/">一抹馨香</a>
+      </li>
+    
+  </ul>
+</div>
+
+    
+  
+</aside>
+<div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2013 <a href="/">布雷奥斯</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://www.uiiwoo.com" target="_blank">布雷奥斯</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'uiiwoo' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>
