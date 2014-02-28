@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.uiiwoo.com/about/index.html</loc>
+    <lastmod>2014-02-28T06:48:16.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://www.uiiwoo.com/2013/12/21/install-rails/</loc>
     <lastmod>2013-12-21T10:35:15.000Z</lastmod>
   </url>
@@ -11,10 +15,6 @@
   <url>
     <loc>http://www.uiiwoo.com/2013/12/19/uiiwoo-icon/</loc>
     <lastmod>2013-12-19T16:06:39.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://www.uiiwoo.com/about/index.html</loc>
-    <lastmod>2013-12-19T15:50:44.000Z</lastmod>
   </url>
   <url>
     <loc>http://www.uiiwoo.com/reading/index.html</loc>
