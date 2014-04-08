@@ -65,34 +65,15 @@
   <div class="entry">
     
       <blockquote>
-<p>Amazon很坑爹的一点就是通过邮件发送到Kindle的Personal Documents竟然不能批量删除！只能一个一个删，而且每删一个，页面还要重新载入一次——考虑到Amazon在国内不给力的速度，如果你的文件很多，删起来确实需要很多时间。</p>
-</blockquote>
-<h2>Bookmarklet 解决方案</h2>
-<blockquote>
-<p>当下几乎所有的浏览器都支持Bookmarklet，所以我们以在书签中加入js脚本的办法来辅助删除Kindle云端的个人文档即可，js脚本如下：</p>
-</blockquote>
-<pre><code><span class="xml">javascript:(function(){ var v = new RegExp('PersonalDocuments'); if (!v.test(document.URL)) {alert("The script can only work in Personal Documents!");}else{a=document.getElementsByClassName('rowBodyCollapsed');b=document.getElementsByName('checkboxForDelete');if(b.length==</span><span class="number">0</span><span class="xml">){document.getElementById('Row1Button').innerHTML += "<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:(function(){for(var i=</span><span class="number">0</span><span class="xml">;i<span class="tag">&lt;<span class="title">b.length;i++){b[i].checked=true;};})();'</span>&gt;</span>All<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:(function(){for(var i=</span><span class="number">0</span><span class="xml">;i<span class="tag">&lt;<span class="title">b.length;i++){b[i].checked=false;};})();'</span>&gt;</span> None<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:(function(){for(var i=</span><span class="number">0</span><span class="xml">;i<span class="tag">&lt;<span class="title">b.length;i++){b[i].checked=!b[i].checked;};})();'</span>&gt;</span> Reverse<span class="tag">&lt;/<span class="title">a</span>&gt;</span>";for(var i = </span><span class="number">0</span><span class="xml">; i<span class="tag">&lt;<span class="title">a.length;</span> <span class="attribute">i</span>++){ <span class="attribute">tmp</span>=<span class="value">document.getElementById('Row'</span> + (<span class="attribute">i</span>+</span><span class="number">1</span><span class="xml">) + 'Button'); tmp.innerHTML += "<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">'checkbox'</span> <span class="attribute">name</span>=<span class="value">'checkboxForDelete'</span> &gt;</span>";};}else{for(var i = </span><span class="number">0</span><span class="xml">; i<span class="tag">&lt;<span class="title">b.length;</span> <span class="attribute">i</span>++){<span class="attribute">if</span>(<span class="attribute">b</span>[<span class="attribute">i</span>]<span class="attribute">.checked</span>){<span class="attribute">Fion.deleteItem</span>('<span class="attribute">deleteItem_</span>'+<span class="attribute">a</span>[<span class="attribute">i</span>]<span class="attribute">.getAttribute</span>('<span class="attribute">asin</span>'));}};}<span class="attribute">return</span>;}})(); </span></code></pre>
-<blockquote>
-<p>你只需要在浏览器中新建书签，将该脚本粘贴到书签的url一栏中并保存，就可以放心使用了。</p>
-<ul>
-<li>用法如下</li>
-</ul>
-<ol>
-<li>进入Kindle云端个人文档管理页面，点击一次该书签；</li>
-<li>勾选要删除的文件的左边出现的选框；</li>
-<li>再次点击该书签，等待删除完成。</li>
-</ol>
-<ul>
-<li><p>或者，更简单的办法如下图：</p>
-<p>![脚本部署示意图][1]<br>[1]:<a href="http://uiiwoo.u.qiniudn.com/uw/image/plscamzt.jpg" target="_blank">http://uiiwoo.u.qiniudn.com/uw/image/plscamzt.jpg</a></p>
-</li>
-</ul>
-</blockquote>
-
+<p>Amazon很坑爹的一点就是通过邮件发送到Kindle的Personal Documents竟然不能批量删除！只能一个一个删，而且每删一个，页面还要重新载入一次——考虑到Amazon在国内不给力的速度，如果你的文件很多，删起来确实需要很多时间。<br>
     
   </div>
   <footer class="end-sep">
     
+      
+        <div class="alignleft">
+          <a href="/2014/04/08/plscamzp/#more" class="more-link">Read More</a>
+        </div>
       
       
     
