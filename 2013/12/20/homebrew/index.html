@@ -222,11 +222,11 @@
   
   <div class="entry">
     
-      <h2>什么是 Homebrew</h2>
+      <h2 id="什么是_Homebrew">什么是 Homebrew</h2>
 <p>Homebrew 是 Mac OS X 平台下的软件包管理系统。</p>
 <p>Mac OS X 是基于 Unix 的操作系统，可以安装大部分为 Unix/Linux 开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于 Linux 中 APT、Yum 等类似的软件包管理系统，其中最著名的有 MacPorts、Fink、Homebrew 等。</p>
-<h2>Homebrew 的安装</h2>
-<h3>首先确保你的系统满足如下要求：</h3>
+<h2 id="Homebrew_的安装">Homebrew 的安装</h2>
+<h3 id="首先确保你的系统满足如下要求：">首先确保你的系统满足如下要求：</h3>
 <ul>
 <li>x86 的 U</li>
 <li>操作系统为 Mac OS X 雪豹以上</li>
@@ -236,56 +236,56 @@
 </ul>
 <a id="more"></a>
 
-<h3>下载 HomeBrew</h3>
+<h3 id="下载_HomeBrew">下载 HomeBrew</h3>
 <ul>
 <li>地址： <a href="https://nodeload.github.com/mxcl/homebrew/legacy.tar.gz/master" target="_blank">https://nodeload.github.com/mxcl/homebrew/legacy.tar.gz/master</a></li>
 <li>下载最方便也可重复使用，下载好后直接解压缩，可以放在任何你想放的地方，推荐放到 /usr/local 文件夹里面。</li>
 <li>注意一下，任意放置的话，路径不要有中文字符，不然 rvm 安装 ruby 更新时会出错。</li>
 </ul>
-<h3>设置环境变量</h3>
+<h3 id="设置环境变量">设置环境变量</h3>
 <p> <em>需要将 homebrew/bin/ 文件夹写入环境变量，在这里我是直接加入到全局的 ~/.bash_profile 的 PATH 里面。</em></p>
 <p> <strong>⚉ .bash_profile 的内容：</strong></p>
-<pre><code>  export <span class="constant">PATH</span>=<span class="regexp">/opt/local</span><span class="regexp">/bin:/opt</span><span class="regexp">/local/sbin</span><span class="symbol">:/opt/local/bin</span><span class="symbol">:/opt/local/sbin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/bin</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/sbin</span><span class="symbol">:/usr/local/bin</span><span class="symbol">:/usr/local/mysql/bin</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/android-ndk-r8d</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/sdk</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/cocos2d-</span><span class="number">2.1</span>beta3-x-<span class="number">2.1</span>.<span class="number">0</span><span class="symbol">:/usr/local/homebrew/bin</span><span class="symbol">:</span><span class="variable">$PATH</span></code></pre>
-<h3>Mac 下如何设置 PATH</h3>
+<pre><code>  export <span class="constant">PATH</span>=<span class="regexp">/opt/local</span><span class="regexp">/bin:/opt</span><span class="regexp">/local/sbin</span><span class="symbol">:/opt/local/bin</span><span class="symbol">:/opt/local/sbin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/bin</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/sbin</span><span class="symbol">:/usr/local/bin</span><span class="symbol">:/usr/local/mysql/bin</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/android-ndk-r8d</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/sdk</span><span class="symbol">:/Applications/adt-bundle-mac-x86_64/cocos2d-</span><span class="number">2.1</span>beta3-x-<span class="number">2.1</span>.<span class="number">0</span><span class="symbol">:/usr/local/homebrew/bin</span><span class="symbol">:</span><span class="variable">$PATH</span>
+</code></pre><h3 id="Mac_下如何设置_PATH">Mac 下如何设置 PATH</h3>
 <p> <strong>⚉ 查看 PATH：</strong></p>
-<pre><code>  命令：<span class="variable">$PATH</span></code></pre>
-<p> <strong>⚉ 设置 PATH：</strong></p>
-<pre><code>  命令：<span class="keyword">echo</span> <span class="string">"export PATH=xxxxxx:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bash_profile
-  解释：把<span class="string">"export PATH=xxxxxx:<span class="variable">$PATH</span>"</span>输出打印到~/.bash_profile中去。</code></pre>
-<p> <strong>⚉ ~/.bash_profile 介绍：</strong></p>
+<pre><code>  命令：<span class="variable">$PATH</span>
+</code></pre><p> <strong>⚉ 设置 PATH：</strong></p>
+<pre><code>  命令：<span class="built_in">echo</span> <span class="string">"export PATH=xxxxxx:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bash_profile
+  解释：把<span class="string">"export PATH=xxxxxx:<span class="variable">$PATH</span>"</span>输出打印到~/.bash_profile中去。
+</code></pre><p> <strong>⚉ ~/.bash_profile 介绍：</strong></p>
 <pre><code>  mac 和 linux 终端一般用 bash 来进行解析。当bash在读完了整体环境变量的 /etc/profile 并借此调用其它配置文件后，接下来则是会读取用户自定义的配置文件。bash 读取的文件总共有三种：
-  　     ~/<span class="variable">.bash_profile</span> 　　~/<span class="variable">.bash_login</span>  　　~/<span class="variable">.profile</span>
-  其实 bash 再启动是只读上面文件的一个，而读取的顺序则是依照上面的顺序。也就是说读到 bash_profile 就不读后面的了，如果 bash_profile 不存在，后面的才能有机会。</code></pre>
-<p><strong>⚉ 查看 bash_profile 里面有什么内容：</strong></p>
-<pre><code>  命令：cat ~<span class="regexp">/.bash_profile</code></pre>
-<p><strong>重新打开终端，已经可以使用 brew</strong></p>
-<h2>使用 Homebrew</h2>
+  　     ~/<span class="preprocessor">.bash</span>_profile 　　~/<span class="preprocessor">.bash</span>_login  　　~/<span class="preprocessor">.profile</span>
+  其实 bash 再启动是只读上面文件的一个，而读取的顺序则是依照上面的顺序。也就是说读到 bash_profile 就不读后面的了，如果 bash_profile 不存在，后面的才能有机会。
+</code></pre><p><strong>⚉ 查看 bash_profile 里面有什么内容：</strong></p>
+<pre><code>  命令：cat ~/<span class="preprocessor">.bash</span>_profile
+</code></pre><p><strong>重新打开终端，已经可以使用 brew</strong></p>
+<h2 id="使用_Homebrew">使用 Homebrew</h2>
 <p><strong>⚉ 建立本地的 git 仓库，执行如下：</strong></p>
 <pre><code>  cd /usr/local
   git init
   git remote <span class="keyword">add</span> origin git://github<span class="preprocessor">.com</span>/mxcl/homebrew<span class="preprocessor">.git</span>
-  git pull origin master</code></pre>
-<p><strong>⚉ 查找和安装软件：</strong></p>
-<pre><code>  <span class="title">brew</span> search <span class="comment">#软件名#</span>
-  brew install <span class="comment">#软件名#</span></code></pre>
-<p><strong>⚉ GitHub 上的项目,可直接克隆下来：</strong></p>
-<pre><code>  <span class="title">git</span> clone <span class="url">http://github.com/#你的github用户名#/homebrew.git/tmp/homebrew</code></pre>
-<p><strong>⚉ Homebrew 其它常用指令：</strong></p>
-<pre><code>  <span class="title">brew</span> list   <span class="comment">## 列出已安装的软件</span>
-  brew update   <span class="comment">## 更新Homebrew</span>
-  brew home *  <span class="comment">## 用浏览器打开</span>
-  brew <span class="built_in">info</span> *  <span class="comment">## 显示软件内容信息</span>
-  brew deps *  <span class="comment">## 显示包依赖</span>
-  brew server *   <span class="comment">## 可以通过浏览器访问 http://localhost:4567 来同网页来管理包</span>
-  brew -h brew   <span class="comment">## 帮助</span></code></pre>
-<h2>删除Homebrew</h2>
+  git pull origin master
+</code></pre><p><strong>⚉ 查找和安装软件：</strong></p>
+<pre><code>  brew search <span class="comment">#软件名#</span>
+  brew <span class="keyword">install</span> <span class="comment">#软件名#</span>
+</code></pre><p><strong>⚉ GitHub 上的项目,可直接克隆下来：</strong></p>
+<pre><code>  git clone <span class="symbol">http:</span>/<span class="regexp">/github.com/</span><span class="comment">#你的github用户名#/homebrew.git/tmp/homebrew</span>
+</code></pre><p><strong>⚉ Homebrew 其它常用指令：</strong></p>
+<pre><code>  brew <span class="built_in">list</span>   <span class="preprocessor">## 列出已安装的软件</span>
+  brew update   <span class="preprocessor">## 更新Homebrew</span>
+  brew home *  <span class="preprocessor">## 用浏览器打开</span>
+  brew info *  <span class="preprocessor">## 显示软件内容信息</span>
+  brew deps *  <span class="preprocessor">## 显示包依赖</span>
+  brew server *   <span class="preprocessor">## 可以通过浏览器访问 http:<span class="comment">//localhost:4567 来同网页来管理包</span></span>
+  brew -h brew   <span class="preprocessor">## 帮助</span>
+</code></pre><h2 id="删除Homebrew">删除Homebrew</h2>
 <p><strong>⚉ 卸载指令：</strong></p>
-<pre><code>  <span class="comment">cd</span> <span class="comment">`brew</span> <span class="comment">–prefix`</span>
-  <span class="comment">rm</span> <span class="literal">-</span><span class="comment">rf</span> <span class="comment">Cellar</span>
-  <span class="comment">brew</span> <span class="comment">prune</span>
-  <span class="comment">rm</span> <span class="literal">-</span><span class="comment">rf</span> <span class="comment">Library</span> <span class="string">.</span><span class="comment">git</span> <span class="string">.</span><span class="comment">gitignore</span> <span class="comment">bin/brew</span> <span class="comment">README</span>.<span class="comment">md</span> <span class="comment">share/man/man1/brew</span>
-  <span class="comment">rm</span> <span class="literal">-</span><span class="comment">rf</span> <span class="comment">~/Library/Caches/Homebrew</code></pre>
-<blockquote>
+<pre><code>  cd <span class="string">`brew –prefix`</span>
+  rm <span class="attribute">-rf</span> Cellar
+  brew prune
+  rm <span class="attribute">-rf</span> Library <span class="built_in">.</span>git <span class="built_in">.</span>gitignore bin/brew README<span class="built_in">.</span>md share/man/man1/brew
+  rm <span class="attribute">-rf</span> ~/Library/Caches/Homebrew
+</code></pre><blockquote>
 <p><strong>End</strong></p>
 </blockquote>
 
